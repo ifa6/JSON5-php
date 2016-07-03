@@ -215,7 +215,7 @@ class Parser {
         $key = trim($this->token($json5, ":"));
       }
       $value = $this->parse_json5($json5);
-      $res[$key] = $value;
+      $res[trim($key,'"\'')] = $value;
       $json5 = ltrim($json5);
       if (strncmp($json5, ',', 1) === 0) {
         $json5 = substr($json5, 1);
