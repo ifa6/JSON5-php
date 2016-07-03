@@ -1,6 +1,6 @@
 {
   "name": "hiroto-k/json5-php",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "JSON5 parser for PHP",
   "keywords": ["JSON", "JSON5", "PHP"],
   "license": "MIT",
