@@ -5,20 +5,16 @@ php:
   - "7.0"
   - "hhvm"
 
-branches:
-  only:
-    - master
-    - develop
+before_script:
+  - composer self-update
+  - composer install
+script:
+  - composer run test
 
-before_script: bash .travis/before_script.sh
 cache:
   directories:
     - vendor
 
-script: bash .travis/script.sh
-
 notifications:
-  emails:
-    - hiro.yo.yo1610+travis-ci@gmail.com
   on_success: never
-  on_failure: always
+  on_failure: never
