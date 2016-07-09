@@ -8,6 +8,10 @@ php:
 before_script:
   - composer self-update
   - composer install
+
+after_success:
+  - bash .ci/generate-api.sh
+
 script:
   - composer run test
 
@@ -18,3 +22,7 @@ cache:
 notifications:
   on_success: never
   on_failure: never
+
+env :
+  global :
+    secure : G0DYQWgecIxT9FQFvj5DvWAIvOq9cSQ1hHAuGXlkgs1sm9GYTz51do1HUn3nM2PdemO55X4hI/fwVLaVo0SdeWpg6BHzg65UNjwS+iXBu/17mWM2sG+wLzlYTzz2pUH1F/KFx3xsfd7aAmnLMnVn+sTowUsE+8gIXhUZyUqasIaC+qGQwa9rDDq8bE1c5QLYfUROvTDbd7q1qoVz3wi0zCzeyTDIb9yypIu0+JqiObnCu7sH3YViMtVF/2bnywnrrqeQZShKEbSwqWc3uc4EfwstBTZ5cjnLuCTVmoT9oIsrb6yGFF+w4q7zgvmC9Z3gzaz7W/TscZ/15KqFrbcFrGvDor8OvzWTwJlq4fPyWOeBSxfzMW0itDZnWtMrh6AN1g745bKyRYsf+oRK34AMbtX6I8rmfqMML9SBgGxzeGrz7BkkcHGDUXKmz5L1bAWxSaWILzmEaPmexSMM8n0G6KqHsiqyQrnVhUCI8Kq3R1iKorsrRDrblkEG6jWE5oD1cD0BMerzjabzG7FFYD+gePnCeANviCyuh9TVwUDFn/NuYsupCMb1n4LIV8BS85FQnddwKs+4onC7nVDkC5gNUT6sdmG5ffzGgO9SRhbiHx6HBG3a2oHAS21LbJM9TJJXcQuF1XrHCHqhiNrZy2iPRSG4Ut4dycfzd+vpu+OnD3M=
