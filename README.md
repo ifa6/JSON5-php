@@ -6,6 +6,8 @@
 
 JSON5 parser for PHP.This library using [kujirahand/JSON5-PHP](https://github.com/kujirahand/JSON5-PHP) as reference.
 
+- [API Document](https://hiroto-k.github.io/JSON5-php/)
+
 ## Requirements
 - PHP 5.5.11 or later
 - Composer
