@@ -30,6 +30,7 @@ class JSON5
     /**
      * Encode JSON5
      *
+     * @todo Implement this method
      * @param mixed $json5
      * @return mixed
      */
