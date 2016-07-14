@@ -1,4 +1,4 @@
-if [ $TRAVIS_PHP_VERSION = '5.6' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ];then
+if [ $TRAVIS_PHP_VERSION = '7.0' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ];then
   # Get ApiGen.phar
   wget http://www.apigen.org/apigen.phar
 
