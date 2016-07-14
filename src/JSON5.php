@@ -2,7 +2,7 @@
 
 namespace HirotoK\JSON5;
 
-use HirotoK\JSON5\Exception\RuntimeException;
+use HirotoK\JSON5\Exception\FileNotFoundException;
 use SplFileObject;
 
 /**
@@ -50,7 +50,7 @@ class JSON5
     {
         if (!$file instanceof SplFileObject) {
             if (!file_exists($file)) {
-                throw new RuntimeException("File does not exist.");
+                throw new FileNotFoundException("File does not exist.");
             }
 
             return self::decodeFile(new SplFileObject($file, "r"), $assoc);
