@@ -12,11 +12,93 @@ use stdClass;
  */
 class ParserTest extends \PHPUnit_Framework_TestCase {
 
+  public function testStringSingleQuotation() {
+    $json5 = <<<EOL
+{
+    'ab' : 'cd'
+}
+EOL;
+    $parser = new Parser($json5);
+    $json = $parser->parse();
+    $this->assertEquals('cd', $json->ab);
+  }
+
+  public function testStringDoubleQuotation() {
+    $json5 = <<<EOL
+{
+    'ab' : "cd"
+}
+EOL;
+    $parser = new Parser($json5);
+    $json = $parser->parse();
+    $this->assertEquals('cd', $json->ab);
+  }
+
+  public function testStringNoneQuart()
+  {
+    $json5 = <<<EOL
+{
+    ab : 'cd'
+}
+EOL;
+    $parser = new Parser($json5);
+    $json = $parser->parse();
+    $this->assertEquals('cd', $json->ab);
+  }
+
+  public function testStringMultiLine()
+  {
+    $json5 = <<<EOL
+{
+    ab : 'cd\nef'
+}
+EOL;
+    $parser = new Parser($json5);
+    $json = $parser->parse();
+    $this->assertEquals("cd\nef", $json->ab);
+  }
+
+  public function testArray() {
+    $json5 = <<<EOL
+{
+    'ab' : ['c', 'd']
+
+}
+EOL;
+    $parser = new Parser($json5);
+    $json = $parser->parse(true);
+    $this->assertEquals(['c', 'd'], $json['ab']);
+  }
+
+  public function testArrayNoneQuart()
+  {
+    $json5 = <<<EOL
+{
+    ab : ['c', 'd']
+}
+EOL;
+    $parser = new Parser($json5);
+    $json = $parser->parse(true);
+    $this->assertEquals(['c', 'd'], $json['ab']);
+  }
+
+  public function testInf()
+  {
+    $json5 = <<<EOL
+{
+  ab : Infinity
+}
+EOL;
+    $parser = new Parser($json5);
+    $json = $parser->parse();
+    $this->assertEquals(INF, $json->ab);
+  }
+
+
   public function testParseExampleJson5()
   {
     $json5 = file_get_contents(JSON5_FILE_DIR."/example.json5");
     $parser = new Parser($json5);
-    $this->assertInstanceOf(Parser::class, $parser);
     $json = $parser->parse();
     $this->assertInstanceOf(stdClass::class, $json);
     $this->assertEquals('bar', $json->foo);
