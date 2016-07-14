@@ -11,83 +11,85 @@ use stdClass;
  *
  * @package HirotoK\JSON5\Tests
  */
-class JSON5Test extends Base {
+class JSON5Test extends \PHPUnit_Framework_TestCase {
 
-  /**
-   * Test 'JSON5::decode'.
-   *
-   * @return void
-   */
-  public function testDecode() {
-    foreach ($this->json5_files as $path) {
-      $json5 = file_get_contents($path);
-      $json  = JSON5::decode($json5);
-      $this->assertInstanceOf(stdClass::class, $json);
-    }
+  public function testDecodeExampleJson5()
+  {
+    $json5 = file_get_contents(JSON5_FILE_DIR."/example.json5");
+    $json  = JSON5::decode($json5);
+    $this->assertInstanceOf(stdClass::class, $json);
   }
 
-  /**
-   * Test 'JSON5::decode' and use assoc option.
-   *
-   * @return void
-   */
-  public function testDecodeAssoc() {
-    foreach ($this->json5_files as $path) {
-      $json5 = file_get_contents($path);
-      $json  = JSON5::decode($json5, true);
-      $this->assertTrue(is_array($json));
-    }
+  public function testDecodePackageJson5()
+  {
+    $json5 = file_get_contents(JSON5_FILE_DIR."/package.json5");
+    $json  = JSON5::decode($json5);
+    $this->assertInstanceOf(stdClass::class, $json);
   }
 
-  /**
-   * Test 'JSON5::decodeFile' pass 'string'.
-   *
-   * @return void
-   */
-  public function testDecodeFile() {
-    foreach ($this->json5_files as $path) {
-      $json = JSON5::decodeFile($path);
-      $this->assertInstanceOf(stdClass::class, $json);
-    }
+  public function testDecodeWithAssocExampleJson5() {
+    $json5 = file_get_contents(JSON5_FILE_DIR."/example.json5");
+    $json  = JSON5::decode($json5, true);
+    $this->assertTrue(is_array($json));
   }
 
-  /**
-   * Test 'JSON5::decodeFile' pass 'string' and use assoc option.
-   *
-   * @return void
-   */
-  public function testDecodeFileAssoc() {
-    foreach ($this->json5_files as $path) {
-      $json = JSON5::decodeFile($path, true);
-      $this->assertTrue(is_array($json));
-    }
+
+  public function testDecodeWithAssocPackageJson5() {
+    $json5 = file_get_contents(JSON5_FILE_DIR."/package.json5");
+    $json  = JSON5::decode($json5, true);
+    $this->assertTrue(is_array($json));
   }
 
-  /**
-   * Test 'JSON5::decodeFile' pass 'SplFileObject'.
-   *
-   * @return void
-   */
-  public function testDecodeFileSpl() {
-    foreach ($this->json5_files as $path) {
-      $json5 = new SplFileObject($path);
-      $json  = JSON5::decodeFile($json5);
-      $this->assertInstanceOf(stdClass::class, $json);
-    }
+  public function testDecodeFileStringExampleJson5()
+  {
+    $json = JSON5::decodeFile(JSON5_FILE_DIR."/example.json5");
+    $this->assertInstanceOf(stdClass::class, $json);
   }
 
-  /**
-   * Test 'JSON5::decodeFile' pass 'SplFileObject' and use assoc option.
-   *
-   * @return void
-   */
-  public function testDecodeFileSplAssoc() {
-    foreach ($this->json5_files as $path) {
-      $json5 = new SplFileObject($path);
-      $json  = JSON5::decodeFile($json5, true);
-      $this->assertTrue(is_array($json));
-    }
+  public function testDecodeFileStringPackageJson5()
+  {
+    $json = JSON5::decodeFile(JSON5_FILE_DIR."/package.json5");
+    $this->assertInstanceOf(stdClass::class, $json);
   }
 
+  public function testDecodeFileStringWithAssocExampleJson5()
+  {
+    $json = JSON5::decodeFile(JSON5_FILE_DIR."/example.json5", true);
+    $this->assertTrue(is_array($json));
+  }
+
+  public function testDecodeFileStringWithAssocPackageJson5()
+  {
+    $json = JSON5::decodeFile(JSON5_FILE_DIR."/package.json5", true);
+    $this->assertTrue(is_array($json));
+  }
+
+  public function testDecodeFileSplExampleJson5()
+  {
+    $spl = new SplFileObject(JSON5_FILE_DIR."/example.json5");
+    $json = JSON5::decodeFile($spl);
+    $this->assertInstanceOf(stdClass::class, $json);
+  }
+
+  public function testDecodeFileSplPackageJson5()
+  {
+    $spl = new SplFileObject(JSON5_FILE_DIR."/package.json5");
+    $json = JSON5::decodeFile($spl);
+    $this->assertInstanceOf(stdClass::class, $json);
+  }
+
+  public function testDecodeFileSplWithAssocExampleJson5()
+  {
+    $spl = new SplFileObject(JSON5_FILE_DIR."/example.json5");
+    $json = JSON5::decodeFile($spl, true);
+    $this->assertTrue(is_array($json));
+  }
+
+  public function testDecodeFileSplWithAssocPackageJson5()
+  {
+    $spl = new SplFileObject(JSON5_FILE_DIR."/package.json5");
+    $json = JSON5::decodeFile($spl, true);
+    $this->assertTrue(is_array($json));
+  }
 
 }
