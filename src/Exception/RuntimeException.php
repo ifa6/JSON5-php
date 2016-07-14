@@ -7,4 +7,6 @@ namespace HirotoK\JSON5\Exception;
  *
  * @package HirotoK\JSON5\Exception
  */
-class RuntimeException extends \RuntimeException {}
+class RuntimeException extends \RuntimeException
+{
+}
