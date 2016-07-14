@@ -44,6 +44,7 @@ class JSON5
      *
      * @param string|SplFileObject $file
      * @param bool $assoc
+     * @throws \HirotoK\JSON5\Exception\FileNotFoundException
      * @return mixed
      */
     public static function decodeFile($file, $assoc = false)
