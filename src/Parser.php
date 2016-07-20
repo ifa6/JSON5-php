@@ -3,13 +3,12 @@
 namespace HirotoK\JSON5;
 
 /**
- * Class Parser
+ * Class Parser.
  *
  * @package HirotoK\JSON5
  */
 class Parser
 {
-
     /**
      * JSON5 string.
      *
@@ -38,6 +37,7 @@ class Parser
      * Parse.
      *
      * @param bool $assoc
+     *
      * @return mixed
      */
     public function parse($assoc = false)
@@ -50,21 +50,23 @@ class Parser
 
     /**
      * @param $obj
+     *
      * @return bool
      */
     protected function returnObject($obj)
     {
         if ($this->assoc) {
-            return (array)$obj;
+            return (array) $obj;
         }
 
-        return (object)$obj;
+        return (object) $obj;
     }
 
     /**
-     * Parse json5
+     * Parse json5.
      *
      * @param $json5
+     *
      * @return mixed
      */
     protected function parse_json5(&$json5)
@@ -74,31 +76,31 @@ class Parser
 
         $c = substr($json5, 0, 1);
 
-        if ($c === "{") {
+        if ($c === '{') {
             return $this->parse_object($json5);
         }
-        if ($c === "[") {
+        if ($c === '[') {
             return $this->parse_array($json5);
         }
         if ($c === '"' || $c === "'") {
             return $this->parse_string($json5);
         }
-        if (strncasecmp($json5, "null", 4) === 0) {
+        if (strncasecmp($json5, 'null', 4) === 0) {
             $json5 = substr($json5, 4);
 
-            return null;
+            return;
         }
-        if (strncasecmp($json5, "true", 4) === 0) {
+        if (strncasecmp($json5, 'true', 4) === 0) {
             $json5 = substr($json5, 4);
 
             return true;
         }
-        if (strncasecmp($json5, "false", 5) == 0) {
+        if (strncasecmp($json5, 'false', 5) == 0) {
             $json5 = substr($json5, 5);
 
             return false;
         }
-        if (strncasecmp($json5, "infinity", 8) == 0) {
+        if (strncasecmp($json5, 'infinity', 8) == 0) {
             $json5 = substr($json5, 8);
 
             return INF;
@@ -124,18 +126,19 @@ class Parser
      * Remove json5 comments.
      *
      * @param $json5
+     *
      * @return string
      */
     protected function parse_comment(&$json5)
     {
-        while ($json5 !== "") {
+        while ($json5 !== '') {
             $json5 = ltrim($json5);
             $c2    = substr($json5, 0, 2);
-            if ($c2 === "/*") {
-                $this->token($json5, "*/");
+            if ($c2 === '/*') {
+                $this->token($json5, '*/');
                 continue;
             }
-            if ($c2 === "//") {
+            if ($c2 === '//') {
                 $this->token($json5, "\n");
                 continue;
             }
@@ -146,23 +149,24 @@ class Parser
     }
 
     /**
-     * Parse json5 string
+     * Parse json5 string.
      *
      * @param $json5
+     *
      * @return mixed|string
      */
     protected function parse_string(&$json5)
     {
-        $str   = "";
+        $str   = '';
         $flag  = substr($json5, 0, 1);
         $json5 = substr($json5, 1);
-        while ($json5 !== "") {
+        while ($json5 !== '') {
             $c     = mb_substr($json5, 0, 1);
             $json5 = substr($json5, strlen($c));
             if ($c === $flag) {
                 break;
             }
-            if ($c === "\\") {
+            if ($c === '\\') {
                 if (substr($json5, 0, 2) === "\r\n") {
                     $json5 = substr($json5, 2);
                     $str .= "\r\n";
@@ -178,7 +182,7 @@ class Parser
         }
         $res = json_decode('"'.$str.'"');
         if (is_null($res)) {
-            $json = json_decode(json_encode(compact("str")));
+            $json = json_decode(json_encode(compact('str')));
             $res  = $json->str;
         }
 
@@ -189,21 +193,22 @@ class Parser
      * Parse json5 array.
      *
      * @param string $json5
+     *
      * @return array
      */
     protected function parse_array(&$json5)
     {
         $json5 = substr($json5, 1);
         $res   = [];
-        while ($json5 !== "") {
+        while ($json5 !== '') {
             $this->parse_comment($json5);
-            if (strncmp($json5, "]", 1) === 0) {
+            if (strncmp($json5, ']', 1) === 0) {
                 $json5 = substr($json5, 1);
                 break;
             }
             $res[] = $this->parse_json5($json5);
             $json5 = ltrim($json5);
-            if (substr($json5, 0, 1) === ",") {
+            if (substr($json5, 0, 1) === ',') {
                 $json5 = substr($json5, 1);
             }
         }
@@ -215,24 +220,25 @@ class Parser
      * Parse object.
      *
      * @param $json5
+     *
      * @return array
      */
     protected function parse_object(&$json5)
     {
         $json5 = substr($json5, 1);
         $res   = [];
-        while ($json5 !== "") {
+        while ($json5 !== '') {
             $this->parse_comment($json5);
-            if (strncmp($json5, "}", 1) === 0) {
+            if (strncmp($json5, '}', 1) === 0) {
                 $json5 = substr($json5, 1);
                 break;
             }
             $c = substr($json5, 0, 1);
             if ($c === '"' || $c === "'") {
                 $key = $this->parse_string($json5);
-                $this->token($json5, ":");
+                $this->token($json5, ':');
             } else {
-                $key = trim($this->token($json5, ":"));
+                $key = trim($this->token($json5, ':'));
             }
             $value                  = $this->parse_json5($json5);
             $res[trim($key, '"\'')] = $value;
@@ -245,12 +251,12 @@ class Parser
         return $this->returnObject($res);
     }
 
-
     /**
      * Parse token.
      *
      * @param $str
      * @param $spl
+     *
      * @return string
      */
     protected function token(&$str, $spl)
@@ -258,12 +264,12 @@ class Parser
         $i = strpos($str, $spl);
         if ($i === false) {
             $result = $str;
-            $str    = "";
+            $str    = '';
 
             return $result;
         }
         $result = substr($str, 0, $i);
-        $str    = substr($str, $i+strlen($spl));
+        $str    = substr($str, $i + strlen($spl));
 
         return $result;
     }

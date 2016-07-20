@@ -3,7 +3,7 @@
 namespace HirotoK\JSON5\Exception;
 
 /**
- * Class FileNotFoundException
+ * Class FileNotFoundException.
  *
  * @package HirotoK\JSON5\Exception
  */

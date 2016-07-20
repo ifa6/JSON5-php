@@ -3,7 +3,7 @@
 namespace HirotoK\JSON5\Exception;
 
 /**
- * Class RuntimeException
+ * Class RuntimeException.
  *
  * @package HirotoK\JSON5\Exception
  */
