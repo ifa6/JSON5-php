@@ -6,21 +6,16 @@ use Symfony\CS\Finder\DefaultFinder;
 
 $fixers = [
     "-phpdoc_no_package",
+    "-psr0",
     "align_equals",
-    "blankline_after_open_tag",
-    "function_call_space",
-    "lowercase_constants",
-    "lowercase_keywords",
-    "method_argument_space",
-    "multiple_use",
-    "no_empty_lines_after_phpdocs",
-    "php_closing_tag",
-    "phpdoc_indent",
-    "phpdoc_inline_tag",
-    "phpdoc_no_access",
-    "return",
+    "encoding",
+    "ereg_to_preg",
+    "php4_constructor",
+    "php_unit_construct",
     "short_array_syntax",
-    "unused_use",
+    "short_echo_tag",
+    "ordered_use",
+    "newline_after_open_tag",
 ];
 
 $finder = DefaultFinder::create()
@@ -29,5 +24,6 @@ $finder = DefaultFinder::create()
 
 return Config::create()
     ->level(FixerInterface::PSR2_LEVEL)
+    ->level(FixerInterface::SYMFONY_LEVEL)
     ->fixers($fixers)
     ->finder($finder);
