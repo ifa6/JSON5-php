@@ -2,7 +2,8 @@
 
 [![Build status](https://img.shields.io/travis/Hiroto-K/JSON5-php/master.svg?style=flat-square)](https://travis-ci.org/Hiroto-K/JSON5-php)
 [![License](https://img.shields.io/github/license/Hiroto-K/JSON5-php.svg?style=flat-square)](https://github.com/Hiroto-K/JSON5-php/blob/master/LICENSE)
-![](https://img.shields.io/badge/platform-Console-808080.svg?style=flat-square)
+[![Packagist](https://img.shields.io/packagist/v/Hiroto-K/JSON5-php.svg?maxAge=2592000&style=flat-square)]()
+[![Packagist](https://img.shields.io/packagist/dt/Hiroto-K/JSON5-php.svg?maxAge=2592000&style=flat-square)]()
 
 JSON5 parser for PHP.This library using [kujirahand/JSON5-PHP](https://github.com/kujirahand/JSON5-PHP) as reference.
 
