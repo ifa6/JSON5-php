@@ -52,7 +52,8 @@ EOL;
     {
         $json5 = <<<EOL
 {
-    ab : 'cd\nef'
+    ab : 'cd
+ef'
 }
 EOL;
         $parser = new Parser($json5);
