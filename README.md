@@ -40,7 +40,8 @@ Please add ``require "vendor/autoload.php"`` in your php file.
 Example
 ```php
 <?php
-require "vendor/autoload.php";
+
+require 'vendor/autoload.php';
 
 use HirotoK\JSON5\JSON5;
 
@@ -52,8 +53,7 @@ $json_object = JSON5::decode($json5_string);
 // Return 'array'
 $json_array = JSON5::decode($json5_string, true);
 
-
-$json5_file = "./tests/files/example.json5";
+$json5_file = './tests/files/example.json5';
 
 // Pass file name or SplFileObject.
 // Return 'stdClass'
