@@ -41,4 +41,5 @@ return Config::create()
     ->level(FixerInterface::PSR2_LEVEL)
     ->level(FixerInterface::SYMFONY_LEVEL)
     ->fixers($fixers)
-    ->finder($finder);
+    ->finder($finder)
+    ->setUsingCache(true);
