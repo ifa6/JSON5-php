@@ -1,9 +1,9 @@
 <?php
 
-use Symfony\CS\Config\Config;
+use Symfony\CS\Config;
 use Symfony\CS\Fixer\Contrib\HeaderCommentFixer;
 use Symfony\CS\FixerInterface;
-use Symfony\CS\Finder\DefaultFinder;
+use Symfony\CS\Finder;
 
 $header = <<<EOS
 This file is part of JSON5-php.
@@ -31,7 +31,9 @@ $fixers = [
     "newline_after_open_tag",
 ];
 
-$finder = DefaultFinder::create()
+$finder = Finder::create()
+    ->files()
+    ->name(".php_cs")
     ->exclude("vendor")
     ->in(__DIR__);
 
