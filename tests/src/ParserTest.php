@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of JSON5-php.
+ *
+ * (c) Hiroto Kitazawa <hiro.yo.yo1610@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace HirotoK\JSON5\Tests;
 
 use HirotoK\JSON5\Parser;
@@ -14,7 +23,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
 {
     public function testStringSingleQuotation()
     {
-        $json5 = <<<EOL
+        $json5 = <<<'EOL'
 {
     'ab' : 'cd'
 }
@@ -26,7 +35,7 @@ EOL;
 
     public function testStringDoubleQuotation()
     {
-        $json5 = <<<EOL
+        $json5 = <<<'EOL'
 {
     'ab' : "cd"
 }
@@ -38,7 +47,7 @@ EOL;
 
     public function testStringNoneQuart()
     {
-        $json5 = <<<EOL
+        $json5 = <<<'EOL'
 {
     ab : 'cd'
 }
@@ -50,7 +59,7 @@ EOL;
 
     public function testStringMultiLine()
     {
-        $json5 = <<<EOL
+        $json5 = <<<'EOL'
 {
     ab : 'cd
 ef'
@@ -63,7 +72,7 @@ EOL;
 
     public function testArray()
     {
-        $json5 = <<<EOL
+        $json5 = <<<'EOL'
 {
     'ab' : ['c', 'd']
 
@@ -76,7 +85,7 @@ EOL;
 
     public function testArrayNoneQuart()
     {
-        $json5 = <<<EOL
+        $json5 = <<<'EOL'
 {
     ab : ['c', 'd']
 }
@@ -88,7 +97,7 @@ EOL;
 
     public function testInf()
     {
-        $json5 = <<<EOL
+        $json5 = <<<'EOL'
 {
   ab : Infinity
 }
