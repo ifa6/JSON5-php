@@ -1,42 +1,42 @@
 {
-  "name": "hiroto-k/json5-php",
-  "version": "1.0.2",
-  "description": "JSON5 parser for PHP",
-  "keywords": ["JSON", "JSON5", "PHP"],
-  "license": "MIT",
-  "type": "library",
-  "authors": [
-    {
-      "name": "Hiroto Kitazawa",
-      "email": "hiro.yo.yo1610@gmail.com",
-      "homepage": "https://hiroto-k.net/",
-      "role": "developer"
-    }
-  ],
-  "require": {
-    "php": ">=5.5.0",
-    "ext-json": "*"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "~4.8",
-    "fabpot/php-cs-fixer": "^1.12"
-  },
-  "autoload": {
-    "psr-4": {
-      "HirotoK\\JSON5\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "HirotoK\\JSON5\\Tests\\": "tests/src"
-    }
-  },
-  "scripts": {
-    "php-cs": [
-      "php-cs-fixer fix"
+    "name": "hiroto-k/json5-php",
+    "version": "1.0.2",
+    "description": "JSON5 parser for PHP",
+    "keywords": ["JSON", "JSON5", "PHP"],
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Hiroto Kitazawa",
+            "email": "hiro.yo.yo1610@gmail.com",
+            "homepage": "https://hiroto-k.net/",
+            "role": "developer"
+        }
     ],
-    "test": [
-      "phpunit"
-    ]
-  }
+    "require": {
+        "php": ">=5.5.0",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8",
+        "fabpot/php-cs-fixer": "^1.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "HirotoK\\JSON5\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "HirotoK\\JSON5\\Tests\\": "tests/src"
+        }
+    },
+    "scripts": {
+        "php-cs": [
+            "php-cs-fixer fix"
+        ],
+        "test": [
+            "phpunit"
+        ]
+    }
 }
