@@ -10,7 +10,7 @@ if [ $TRAVIS_PHP_VERSION = '7.0' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS
   git config --global user.name "Hiroto Kitazawa"
 
   # Clone via github
-  git clone https://${GH_TOKEN}@github.com/Hiroto-K/JSON5-php.git ../gh-pages --branch gh-pages > /dev/null
+  git clone https://${GH_TOKEN}@github.com/Hiroto-K/JSON5-php.git ../gh-pages --branch gh-pages >/dev/null 2>&1
 
   # Copy doc files
   \cp -f -r ../docs/* ../gh-pages
@@ -20,6 +20,6 @@ if [ $TRAVIS_PHP_VERSION = '7.0' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS
   git add .
   d=`date +"%Y/%m/%d %k:%M:%S"`
   git diff --cached --exit-code --quiet || git commit -m "Document update at ${d}"
-  git push origin gh-pages -fq > /dev/null
+  git push origin gh-pages -fq >/dev/null 2>&1
 
 fi
